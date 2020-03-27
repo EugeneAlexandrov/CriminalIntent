@@ -9,7 +9,7 @@ public class Crime {
     private String Title;
     private boolean mSolved;
 
-    public Crime(String title, boolean solved) {
+    public Crime() {
         miD = UUID.randomUUID();
         mDate = new Date();
     }
