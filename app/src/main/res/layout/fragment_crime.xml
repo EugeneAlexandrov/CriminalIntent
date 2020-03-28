@@ -13,7 +13,7 @@
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/title_text"
+            android:id="@+id/crimeFragment_edittext_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="15"
@@ -22,13 +22,13 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/date_btn"
+        android:id="@+id/crimeFragment_date_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="554654" />
 
     <CheckBox
-        android:id="@+id/solved_cbox"
+        android:id="@+id/crimeFragment_checkbox_isSolved"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="CheckBox"
