@@ -25,6 +25,7 @@ public class CrimeFragment extends Fragment {
     Button btn_date;
     CheckBox checkbox_isSolved;
     private static final String ARGS_CRIME_ID = "crime_id";
+    private static final String DIALOG_DATE = "DialogDAte";
 
     protected static CrimeFragment newInstance(UUID id) {
         Bundle bundle = new Bundle();
@@ -81,7 +82,13 @@ public class CrimeFragment extends Fragment {
             }
         });
         btn_date.setText(DateFormat.getDateInstance(DateFormat.SHORT).format(mCrime.getDate()));
-        btn_date.setEnabled(false);
+        btn_date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatePickerFragment dialog = new DatePickerFragment();
+                dialog.show(getFragmentManager(), DIALOG_DATE);
+            }
+        });
 
         checkbox_isSolved = (CheckBox) v.findViewById(R.id.crimeFragment_checkbox_isSolved);
         checkbox_isSolved.setChecked(mCrime.isSolved());
