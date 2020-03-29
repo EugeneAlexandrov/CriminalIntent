@@ -3,6 +3,7 @@ package com.mybclym.criminalintent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,13 +37,21 @@ public class CrimeFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d("TEST", "Fragment Crime onCreate");
         UUID mID = (UUID) getArguments().getSerializable(ARGS_CRIME_ID);
         mCrime = CrimeLab.get().getCrime(mID);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d("TEST", "Fragment Crime onResume");
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        Log.d("TEST", "Fragment Crime onCreateView");
         View v = inflater.inflate(R.layout.fragment_crime, container, false);
 
         edittext_title = (EditText) v.findViewById(R.id.crimeFragment_edittext_title);

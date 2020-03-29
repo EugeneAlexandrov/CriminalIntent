@@ -27,14 +27,21 @@ public class CrimeListFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d("TEST", "Fragment onCreate");
+        Log.d("TEST", "Fragment CrimeList onCreate");
         mCrimes = CrimeLab.get().getCrimes();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d("TEST", "Fragment CrimeList onResume");
+        adapter.notifyDataSetChanged();
+    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        Log.d("TEST", "Fragment CrimeList onCreateView");
         View v;
         v = inflater.inflate(R.layout.fragment_crimelist, container, false);
         mRecyclerView = (RecyclerView) v.findViewById(R.id.recyclerview_crimesList);
@@ -47,9 +54,11 @@ public class CrimeListFragment extends Fragment {
 
     private class CrimeAdapter extends RecyclerView.Adapter<CrimeAdapter.CrimeViewHolder> {
         List<Crime> mCrimeList;
+        int mCrime_position;
 
         public CrimeAdapter(List<Crime> crimes) {
             mCrimeList = crimes;
+
         }
 
         @NonNull
@@ -98,7 +107,7 @@ public class CrimeListFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
-                Intent intent = CrimeActivity.newIntent(getActivity(), mCrime.getID());
+                Intent intent = CrimePagerActivity.newIntent(getActivity(), mCrime.getID(), getAdapterPosition());
                 startActivity(intent);
             }
         }
