@@ -35,12 +35,12 @@ public class DatePickerFragment extends DialogFragment {
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH);
         int day = calendar.get(Calendar.DAY_OF_MONTH);
-        int hour = calendar.get(Calendar.HOUR);
-        int minute = calendar.get(Calendar.MINUTE);
+        final int hour = calendar.get(Calendar.HOUR);
+        final int minute = calendar.get(Calendar.MINUTE);
         int second = calendar.get(Calendar.SECOND);
         View v = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_datepicker, null);
         final DatePicker datePicker = (DatePicker) v.findViewById(R.id.date_picker_view);
-        TimePicker timePicker = (TimePicker) v.findViewById(R.id.time_picker_view);
+        final TimePicker timePicker = (TimePicker) v.findViewById(R.id.time_picker_view);
         datePicker.init(year, month, day, null);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             timePicker.setHour(hour);
@@ -53,7 +53,16 @@ public class DatePickerFragment extends DialogFragment {
                 int year = datePicker.getYear();
                 int month = datePicker.getMonth();
                 int day = datePicker.getDayOfMonth();
-                Date mDate = new GregorianCalendar(year, month, day).getTime();
+                int hour;
+                int minute;
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+                    hour = timePicker.getHour();
+                    minute = timePicker.getMinute();
+                } else {
+                    hour = timePicker.getCurrentHour();
+                    minute = timePicker.getCurrentMinute();
+                }
+                Date mDate = new GregorianCalendar(year, month, day, hour, minute).getTime();
                 sentResult(Activity.RESULT_OK, mDate);
             }
         }).create();

@@ -53,4 +53,5 @@ public class CrimeActivity extends SingleFragmentActivity {
         super.onDestroy();
         Log.d("TEST", "CrimeActivity onDestroy");
     }
+
 }

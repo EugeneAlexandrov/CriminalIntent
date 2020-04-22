@@ -10,9 +10,13 @@ public class Crime {
     private boolean mSolved;
     private boolean mPoliceRequires;
 
-    public Crime() {
-        mID = UUID.randomUUID();
+    public Crime(UUID ID) {
+        mID = ID;
         mDate = new Date();
+    }
+
+    public Crime() {
+        this(UUID.randomUUID());
     }
 
     public UUID getID() {

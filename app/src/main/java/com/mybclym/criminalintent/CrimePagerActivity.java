@@ -4,6 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
@@ -28,7 +31,7 @@ public class CrimePagerActivity extends AppCompatActivity implements View.OnClic
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crime_pager);
-        mCrimeList = CrimeLab.get().getCrimes();
+        mCrimeList = CrimeLab.get(this).getCrimes();
         crime_viewpager = (ViewPager) findViewById(R.id.crime_viewpager);
         viewpager_btn_first = (Button) findViewById(R.id.viewpager_btn_first);
         viewpager_btn_last = (Button) findViewById(R.id.viewpager_btn_last);
@@ -69,12 +72,27 @@ public class CrimePagerActivity extends AppCompatActivity implements View.OnClic
                 crime_viewpager.setCurrentItem(0);
                 break;
             case R.id.viewpager_btn_last:
-                crime_viewpager.setCurrentItem(mCrimeList.size());
+                crime_viewpager.setCurrentItem(mCrimeList.size() - 1);
                 break;
         }
     }
 
-    private boolean isEnable(int position) {
-        return !((position == 0) | (position == (mCrimeList.size() - 1)));
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.fragment_crime, menu);
+        return super.onCreateOptionsMenu(menu);
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_delete_crime:
+                CrimeLab.get(this).delete_crime(crime_viewpager.getCurrentItem());
+                finish();
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
     }
 }

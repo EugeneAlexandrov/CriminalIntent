@@ -7,6 +7,9 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -21,6 +24,7 @@ import androidx.fragment.app.Fragment;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 public class CrimeFragment extends Fragment {
@@ -45,13 +49,19 @@ public class CrimeFragment extends Fragment {
         super.onCreate(savedInstanceState);
         Log.d("TEST", "Fragment Crime onCreate");
         UUID mID = (UUID) getArguments().getSerializable(ARGS_CRIME_ID);
-        mCrime = CrimeLab.get().getCrime(mID);
+        mCrime = CrimeLab.get(getActivity()).getCrime(mID);
     }
 
     @Override
     public void onResume() {
         super.onResume();
         Log.d("TEST", "Fragment Crime onResume");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        CrimeLab.get(getActivity()).updateCrime(mCrime);
     }
 
     @Nullable
@@ -99,6 +109,7 @@ public class CrimeFragment extends Fragment {
             }
         });
         return v;
+
     }
 
     @Override
@@ -109,5 +120,16 @@ public class CrimeFragment extends Fragment {
             btn_date.setText(DateFormat.getDateInstance(DateFormat.SHORT).format(mDate));
             mCrime.setDate(mDate);
         }
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.fragment_crime, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        return super.onOptionsItemSelected(item);
     }
 }

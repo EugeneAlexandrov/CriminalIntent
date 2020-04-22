@@ -5,4 +5,18 @@
     <string name="crime_details_label">Details</string>
     <string name="crime_solved_label">Solved</string>
     <string name="datepicker_title">Date of crime</string>
+    <string name="new_crime">New Crime</string>
+    <string name="show_subtitle">Show Subtitle</string>
+    <string name="hide_subtitle">Hide Subtitle</string>
+    <string name="delete_crime">delete crime</string>
+    <string name="empty_list">Empty list</string>
+
+
+    <plurals name="numberOfCrimes">
+        <item quantity="zero">%d ctyt</item>
+        <item quantity="one">%d crime</item>
+        <item quantity="few">%d crime</item>
+        <item quantity="many">%d crimes</item>
+    </plurals>
+
 </resources>
