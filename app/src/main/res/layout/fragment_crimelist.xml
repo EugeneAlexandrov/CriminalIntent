@@ -10,5 +10,18 @@
         android:id="@+id/recyclerview_crimesList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/recyclerview_item"/>
+        android:visibility="gone"
+        tools:listitem="@layout/recyclerview_item" />
+
+    <TextView
+        android:id="@+id/empty_text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="add crime"
+        android:textAllCaps="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"
+        android:visibility="visible" />
 </LinearLayout>

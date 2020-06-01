@@ -9,29 +9,82 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Title">
 
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/crimeFragment_edittext_title"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="15"
-            android:hint="Title"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:singleLine="true" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/crimeFragment_date_btn"
-        android:layout_width="wrap_content"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="554654" />
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/colorPrimary"
+        app:backgroundTint="@android:color/transparent"
+        app:cornerRadius="4dp"
+        app:strokeColor="@color/colorPrimary"
+        app:strokeWidth="1dp"
+        tools:text="@tools:sample/date/mmddyy" />
 
     <CheckBox
         android:id="@+id/crimeFragment_checkbox_isSolved"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="CheckBox"
+        android:text="@string/is_solved_text"
         app:layout_constraintStart_toStartOf="@+id/textInputEditText"
         app:layout_constraintTop_toBottomOf="@+id/textInputEditText" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/crime_suspect_btn"
+            style="@style/Widget.MaterialComponents.Button.Icon"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+
+            android:padding="15dp"
+            android:text="@string/crime_suspect_text"
+            app:icon="@drawable/ic_fingerprint_black_24dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/phone_suspect_btn"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/crime_suspect_btn"
+            android:visibility="gone"
+            app:icon="@drawable/ic_call_black_24dp"
+            app:iconSize="40dp"
+            app:iconTint="#0CA81B"
+            app:strokeWidth="0dp" />
+
+    </RelativeLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/share_btn"
+        style="@style/Widget.MaterialComponents.Button.Icon"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp"
+        android:padding="15dp"
+        android:text="@string/crime_report_text"
+        app:icon="@drawable/ic_share_black_24dp" />
 </LinearLayout>

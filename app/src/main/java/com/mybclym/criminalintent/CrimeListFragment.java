@@ -44,20 +44,16 @@ public class CrimeListFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d("TEST", "Fragment CrimeList onCreate");
-        mCrimes = CrimeLab.get(getActivity()).getCrimes();
         setHasOptionsMenu(true);
-        updateSubtitle();
+        //updateUI();
         // if (adapter != null) adapter.setCrimes(mCrimes);
-
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        updateUI();
         Log.d("TEST", "Fragment CrimeList onResume");
-        adapter.notifyDataSetChanged();
-        updateSubtitle();
+        updateUI();
     }
 
     @Override
@@ -76,7 +72,7 @@ public class CrimeListFragment extends Fragment {
             case R.id.menu_new_crime:
                 Crime crime = new Crime();
                 CrimeLab.get(getActivity()).addCrime(crime);
-                Intent intent = CrimePagerActivity.newIntent(getActivity(), crime.getID(), 0);
+                Intent intent = CrimeActivity.newIntent(getActivity(), crime.getID());
                 startActivity(intent);
                 return true;
             case R.id.menu_show_subtitle:
@@ -87,7 +83,6 @@ public class CrimeListFragment extends Fragment {
             default:
                 return super.onOptionsItemSelected(item);
         }
-
     }
 
     private void updateSubtitle() {
@@ -109,21 +104,31 @@ public class CrimeListFragment extends Fragment {
         }
         View v;
         v = inflater.inflate(R.layout.fragment_crimelist, container, false);
-        mRecyclerView = (RecyclerView) v.findViewById(R.id.recyclerview_crimesList);
 
+        empty_text = v.findViewById(R.id.empty_text);
+
+        mRecyclerView = (RecyclerView) v.findViewById(R.id.recyclerview_crimesList);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         updateUI();
         return v;
     }
 
     private void updateUI() {
+        Log.d("TEST", "updateUI");
         CrimeLab crimeLab = CrimeLab.get(getActivity());
-        List<Crime> crimes = crimeLab.getCrimes();
+        mCrimes = crimeLab.getCrimes();
+        if (mCrimes.isEmpty()) {
+            mRecyclerView.setVisibility(View.GONE);
+            empty_text.setVisibility(View.VISIBLE);
+        } else {
+            empty_text.setVisibility(View.GONE);
+            mRecyclerView.setVisibility(View.VISIBLE);
+        }
         if (adapter == null) {
-            adapter = new CrimeAdapter(crimes);
+            adapter = new CrimeAdapter(mCrimes);
             mRecyclerView.setAdapter(adapter);
         } else {
-            adapter.setCrimes(crimes);
+            adapter.setCrimes(mCrimes);
             adapter.notifyDataSetChanged();
         }
         updateSubtitle();
@@ -152,11 +157,11 @@ public class CrimeListFragment extends Fragment {
 
         @Override
         public int getItemCount() {
-            return mCrimes.size();
+            return mCrimeList.size();
         }
 
         public void setCrimes(List<Crime> crimes) {
-            mCrimes = crimes;
+            mCrimeList = crimes;
         }
 
         @Override
@@ -216,6 +221,4 @@ public class CrimeListFragment extends Fragment {
             });
         }
     }
-
-
 }

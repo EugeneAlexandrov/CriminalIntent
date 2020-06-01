@@ -88,7 +88,7 @@ public class CrimePagerActivity extends AppCompatActivity implements View.OnClic
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_delete_crime:
-                CrimeLab.get(this).delete_crime(crime_viewpager.getCurrentItem());
+                CrimeLab.get(this).delete_crime((UUID) getIntent().getSerializableExtra(EXTRA_CRIME_ID));
                 finish();
             default:
                 return super.onOptionsItemSelected(item);

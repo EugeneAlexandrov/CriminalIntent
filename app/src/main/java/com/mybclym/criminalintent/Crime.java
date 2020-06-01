@@ -9,6 +9,8 @@ public class Crime {
     private String mTitle;
     private boolean mSolved;
     private boolean mPoliceRequires;
+    private String mSuspect;
+    private String mNumber;
 
     public Crime(UUID ID) {
         mID = ID;
@@ -53,5 +55,21 @@ public class Crime {
 
     public void setPoliceRequires(boolean policeRequires) {
         mPoliceRequires = policeRequires;
+    }
+
+    public String getSuspect() {
+        return mSuspect;
+    }
+
+    public void setSuspect(String suspect) {
+        mSuspect = suspect;
+    }
+
+    public String getNumber() {
+        return mNumber;
+    }
+
+    public void setNumber(String number) {
+        mNumber = number;
     }
 }

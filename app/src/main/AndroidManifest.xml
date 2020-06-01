@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.mybclym.criminalintent">
 
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -17,10 +19,11 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".CrimeActivity"
+            android:parentActivityName=".CrimeListActivity"></activity>
+        <activity
             android:name=".CrimePagerActivity"
-            android:parentActivityName=".CrimeListActivity">
-
-        </activity>
+            android:parentActivityName=".CrimeListActivity"></activity>
 
         <meta-data
             android:name="preloaded_fonts"

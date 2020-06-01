@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="8dp"
-        android:drawableStart="@drawable/rewind_24px"
+        android:drawableLeft="@drawable/rewind_24px"
         android:drawablePadding="10dp"
         android:paddingHorizontal="20dp"
         android:text="First"

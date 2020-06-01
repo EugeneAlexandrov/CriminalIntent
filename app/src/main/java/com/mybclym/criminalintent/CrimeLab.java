@@ -66,8 +66,8 @@ public class CrimeLab {
         }
     }
 
-    public void delete_crime(int position) {
-
+    public void delete_crime(UUID id) {
+        mSQLiteDatabase.delete(CrimeTable.NAME, CrimeTable.Cols.UUID + " = ?", new String[]{id.toString()});
     }
 
     private static ContentValues getContentValues(Crime crime) {
@@ -76,6 +76,8 @@ public class CrimeLab {
         cv.put(CrimeTable.Cols.TITLE, crime.getTitle());
         cv.put(CrimeTable.Cols.DATE, crime.getDate().getTime());
         cv.put(CrimeTable.Cols.SOLVED, crime.isSolved() ? 1 : 0);
+        cv.put(CrimeTable.Cols.SUSPECT, crime.getSuspect());
+        cv.put(CrimeTable.Cols.PHONE, crime.getNumber());
         return cv;
     }
 
@@ -86,7 +88,7 @@ public class CrimeLab {
     }
 
     private CrimeCursorWrapper queryCrimes(String whereClause, String[] whereArgs) {
-        Cursor cursor = mSQLiteDatabase.query(CrimeTable.NAME, null, whereClause, whereArgs, null, null, null);
+        Cursor cursor = mSQLiteDatabase.query(CrimeTable.NAME, null, whereClause, whereArgs, null, null, CrimeTable.Cols.DATE);
         return new CrimeCursorWrapper(cursor);
     }
 }
