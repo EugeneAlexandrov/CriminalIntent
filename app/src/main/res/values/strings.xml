@@ -23,10 +23,11 @@
 
 
     <plurals name="numberOfCrimes">
-        <item quantity="zero">%d ctyt</item>
+        <item quantity="zero">%d crime</item>
         <item quantity="one">%d crime</item>
         <item quantity="few">%d crime</item>
         <item quantity="many">%d crimes</item>
+        <item quantity="other">%d crimes</item>
     </plurals>
 
 </resources>
